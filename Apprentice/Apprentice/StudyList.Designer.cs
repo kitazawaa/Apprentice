@@ -62,6 +62,7 @@
             this.AutoUpadateGroupBox = new System.Windows.Forms.GroupBox();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.study_viewTableAdapter = new Apprentice.Studydata_dbDataSetTableAdapters.Study_viewTableAdapter();
+            this.heldStudyListButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.updateIntervalNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studyListDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studyviewBindingSource)).BeginInit();
@@ -370,11 +371,22 @@
             // 
             this.study_viewTableAdapter.ClearBeforeFill = true;
             // 
+            // heldStudyListButton
+            // 
+            this.heldStudyListButton.Location = new System.Drawing.Point(619, 420);
+            this.heldStudyListButton.Name = "heldStudyListButton";
+            this.heldStudyListButton.Size = new System.Drawing.Size(101, 32);
+            this.heldStudyListButton.TabIndex = 72;
+            this.heldStudyListButton.Text = "保留検査一覧";
+            this.heldStudyListButton.UseVisualStyleBackColor = true;
+            this.heldStudyListButton.Click += new System.EventHandler(this.HeldStudyListButton_Click);
+            // 
             // StudyList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(839, 472);
+            this.Controls.Add(this.heldStudyListButton);
             this.Controls.Add(this.updateIntervalNumericUpDown);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.holdButton);
@@ -443,5 +455,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn patientKanaNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn studyTypeNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn shotItemNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button heldStudyListButton;
     }
 }

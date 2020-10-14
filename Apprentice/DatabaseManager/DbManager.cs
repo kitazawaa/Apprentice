@@ -739,7 +739,7 @@ WHERE SO.PatientId = @PatientId;";
                 {
                     cmd.CommandText = @"
 UPDATE dbo.StudyOrders
-SET IsDeleted = 1, UpdatedAt = GETDATE()
+SET IsDeleted = 1, StudyStatus = '予約済', UpdatedAt = GETDATE()
 WHERE OrderNumber = @OrderNumber;";
 
                     AddQueryParam(cmd, "OrderNumber", orderNumber);
@@ -1004,6 +1004,11 @@ WHERE UserId = @UserId";
         #endregion
 
         #region 1件セットテーブルに挿入
+        /// <summary>
+        /// 1件セットテーブルに挿入
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="itemDetails"></param>
         public static void InsertOneStudyTable(WorkItem item, WorkItemDetails itemDetails)
         {
             using (IDbConnection connection = CreateConnection())
@@ -1035,6 +1040,10 @@ VALUES(@PatientId, @PatientKanjiName, @PatientKanaName, @PatientBirthDate, @Pati
         #endregion
 
         #region 1件セットテーブルから削除
+        /// <summary>
+        /// 1件セットテーブルから削除1件セットテーブルから削除
+        /// </summary>
+        /// <param name="item"></param>
         public static void DeleteOneStudyTable(WorkItem item)
         {
             using (IDbConnection connection = CreateConnection())
@@ -1048,6 +1057,68 @@ DELETE FROM OnlyOneStudy
 WHERE OrderNumber = @OrderNumber;";
 
                     AddQueryParam(cmd, "OrderNumber", item.OrderNumber);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        #endregion
+
+        #region 保留検査一覧表示
+        public static List<WorkItem> DisplayHeldStudyList()
+        {
+            List<WorkItem> result = new List<WorkItem>();
+
+            using (IDbConnection connection = CreateConnection())
+            {
+                connection.Open();
+
+                using (IDbCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = @"
+SELECT SO.OrderNumber, SO.StudyStatus, SO.ScheduledOn, P.PatientId, P.PatientKanjiName, P.PatientKanaName, SO.StudyTypeName,
+STUFF((SELECT ', ' + ShotItemName FROM ShotItems as SI Where SO.OrderNumber = SI.OrderNumber FOR XML PATH('')), 1, 1, '') AS ShotItemName
+FROM dbo.StudyOrders AS SO INNER JOIN 
+dbo.Patients AS P 
+ON SO.PatientId = P.PatientId
+WHERE SO.IsDeleted = 1
+ORDER BY SO.ScheduledOn desc;";
+
+                    IDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        WorkItem workitem = new WorkItem(GetPatient(reader), GetStudy(reader), GetShot(reader));
+
+                        result.Add(workitem);
+                    }
+
+                    return result;
+                }
+            }
+        }
+
+        #endregion
+
+        #region 保留検査一覧から検査一覧へ戻す
+        /// <summary>
+        /// 保留検査一覧から検査一覧へ戻す
+        /// </summary>
+        /// <param name="orderNumber"></param>
+        public static void TransferIntoStudyList(string orderNumber)
+        {
+            using (IDbConnection connection = CreateConnection())
+            {
+                connection.Open();
+
+                using (IDbCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = @"
+UPDATE dbo.StudyOrders
+SET IsDeleted = 0, StudyStatus = '受付済', UpdatedAt = GETDATE()
+WHERE OrderNumber = @OrderNumber;";
+
+                    AddQueryParam(cmd, "OrderNumber", orderNumber);
 
                     cmd.ExecuteNonQuery();
                 }
