@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Importer.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MonitoredFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\ProgramData\UsTecFile\MonitoredFolder</Value>
+    </Setting>
+    <Setting Name="ErrorFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\ProgramData\UsTecFile\ErrorFolder</Value>
+    </Setting>
+    <Setting Name="ProcessedFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\ProgramData\UsTecFile\ProcessedFolder</Value>
+    </Setting>
+    <Setting Name="FileFormat" Type="System.String" Scope="User">
+      <Value Profile="(Default)">*.csv</Value>
+    </Setting>
+    <Setting Name="RetryCount" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="RetryInterval" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
