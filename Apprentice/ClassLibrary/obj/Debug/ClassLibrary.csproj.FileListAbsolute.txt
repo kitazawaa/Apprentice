@@ -1,9 +1,0 @@
-C:\Users\kitazawa\source\repos\Apprentice\ClassLibrary\bin\Debug\ClassLibrary.dll
-C:\Users\kitazawa\source\repos\Apprentice\ClassLibrary\bin\Debug\ClassLibrary.pdb
-C:\Users\kitazawa\source\repos\Apprentice\ClassLibrary\bin\Debug\Entity.dll
-C:\Users\kitazawa\source\repos\Apprentice\ClassLibrary\bin\Debug\Entity.pdb
-C:\Users\kitazawa\source\repos\Apprentice\ClassLibrary\obj\Debug\ClassLibrary.csprojAssemblyReference.cache
-C:\Users\kitazawa\source\repos\Apprentice\ClassLibrary\obj\Debug\ClassLibrary.csproj.CoreCompileInputs.cache
-C:\Users\kitazawa\source\repos\Apprentice\ClassLibrary\obj\Debug\ClassLibrary.csproj.CopyComplete
-C:\Users\kitazawa\source\repos\Apprentice\ClassLibrary\obj\Debug\ClassLibrary.dll
-C:\Users\kitazawa\source\repos\Apprentice\ClassLibrary\obj\Debug\ClassLibrary.pdb
