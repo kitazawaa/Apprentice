@@ -203,9 +203,6 @@ namespace Apprentice
         #region 一覧画面に戻る
         private void GoBackLinkLabelLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            StudyList studylist = new StudyList();
-            studylist.Visible = false;
-
             DbManager.DeleteOneStudyTable(_item);
 
             this.Close();

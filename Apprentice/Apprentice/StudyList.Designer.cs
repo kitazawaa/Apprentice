@@ -49,6 +49,12 @@
             this.searchFromStudyDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.StudyDateLabel = new System.Windows.Forms.Label();
             this.studyListDataGridView = new System.Windows.Forms.DataGridView();
+            this.studyviewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.studydata_dbDataSet = new Apprentice.Studydata_dbDataSet();
+            this.AutoUpadateGroupBox = new System.Windows.Forms.GroupBox();
+            this.updateTimer = new System.Windows.Forms.Timer(this.components);
+            this.study_viewTableAdapter = new Apprentice.Studydata_dbDataSetTableAdapters.Study_viewTableAdapter();
+            this.heldStudyListButton = new System.Windows.Forms.Button();
             this.orderNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.studyStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scheduledOnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,11 +63,6 @@
             this.patientKanaNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.studyTypeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.shotItemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.studyviewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.studydata_dbDataSet = new Apprentice.Studydata_dbDataSet();
-            this.AutoUpadateGroupBox = new System.Windows.Forms.GroupBox();
-            this.updateTimer = new System.Windows.Forms.Timer(this.components);
-            this.study_viewTableAdapter = new Apprentice.Studydata_dbDataSetTableAdapters.Study_viewTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.updateIntervalNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studyListDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studyviewBindingSource)).BeginInit();
@@ -295,6 +296,43 @@
             this.studyListDataGridView.Size = new System.Drawing.Size(803, 290);
             this.studyListDataGridView.TabIndex = 51;
             // 
+            // studyviewBindingSource
+            // 
+            this.studyviewBindingSource.DataMember = "Study_view";
+            this.studyviewBindingSource.DataSource = this.studydata_dbDataSet;
+            // 
+            // studydata_dbDataSet
+            // 
+            this.studydata_dbDataSet.DataSetName = "Studydata_dbDataSet";
+            this.studydata_dbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // AutoUpadateGroupBox
+            // 
+            this.AutoUpadateGroupBox.Location = new System.Drawing.Point(510, 22);
+            this.AutoUpadateGroupBox.Name = "AutoUpadateGroupBox";
+            this.AutoUpadateGroupBox.Size = new System.Drawing.Size(69, 68);
+            this.AutoUpadateGroupBox.TabIndex = 65;
+            this.AutoUpadateGroupBox.TabStop = false;
+            this.AutoUpadateGroupBox.Text = "自動更新";
+            // 
+            // updateTimer
+            // 
+            this.updateTimer.Tick += new System.EventHandler(this.UpdateTimerTick);
+            // 
+            // study_viewTableAdapter
+            // 
+            this.study_viewTableAdapter.ClearBeforeFill = true;
+            // 
+            // heldStudyListButton
+            // 
+            this.heldStudyListButton.Location = new System.Drawing.Point(619, 420);
+            this.heldStudyListButton.Name = "heldStudyListButton";
+            this.heldStudyListButton.Size = new System.Drawing.Size(101, 32);
+            this.heldStudyListButton.TabIndex = 72;
+            this.heldStudyListButton.Text = "保留検査一覧";
+            this.heldStudyListButton.UseVisualStyleBackColor = true;
+            this.heldStudyListButton.Click += new System.EventHandler(this.HeldStudyListButton_Click);
+            // 
             // orderNumberDataGridViewTextBoxColumn
             // 
             this.orderNumberDataGridViewTextBoxColumn.DataPropertyName = "OrderNumber";
@@ -310,7 +348,7 @@
             // scheduledOnDataGridViewTextBoxColumn
             // 
             this.scheduledOnDataGridViewTextBoxColumn.DataPropertyName = "ScheduledOn";
-            this.scheduledOnDataGridViewTextBoxColumn.HeaderText = "検査日";
+            this.scheduledOnDataGridViewTextBoxColumn.HeaderText = "予約日";
             this.scheduledOnDataGridViewTextBoxColumn.Name = "scheduledOnDataGridViewTextBoxColumn";
             // 
             // patientIdscheduledOnDataGridViewTextBoxColumn
@@ -343,38 +381,12 @@
             this.shotItemNameDataGridViewTextBoxColumn.HeaderText = "撮影項目";
             this.shotItemNameDataGridViewTextBoxColumn.Name = "shotItemNameDataGridViewTextBoxColumn";
             // 
-            // studyviewBindingSource
-            // 
-            this.studyviewBindingSource.DataMember = "Study_view";
-            this.studyviewBindingSource.DataSource = this.studydata_dbDataSet;
-            // 
-            // studydata_dbDataSet
-            // 
-            this.studydata_dbDataSet.DataSetName = "Studydata_dbDataSet";
-            this.studydata_dbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // AutoUpadateGroupBox
-            // 
-            this.AutoUpadateGroupBox.Location = new System.Drawing.Point(510, 22);
-            this.AutoUpadateGroupBox.Name = "AutoUpadateGroupBox";
-            this.AutoUpadateGroupBox.Size = new System.Drawing.Size(69, 68);
-            this.AutoUpadateGroupBox.TabIndex = 65;
-            this.AutoUpadateGroupBox.TabStop = false;
-            this.AutoUpadateGroupBox.Text = "自動更新";
-            // 
-            // updateTimer
-            // 
-            this.updateTimer.Tick += new System.EventHandler(this.UpdateTimerTick);
-            // 
-            // study_viewTableAdapter
-            // 
-            this.study_viewTableAdapter.ClearBeforeFill = true;
-            // 
             // StudyList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(839, 472);
+            this.Controls.Add(this.heldStudyListButton);
             this.Controls.Add(this.updateIntervalNumericUpDown);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.holdButton);
@@ -435,6 +447,7 @@
         private Studydata_dbDataSet studydata_dbDataSet;
         private System.Windows.Forms.BindingSource studyviewBindingSource;
         private Studydata_dbDataSetTableAdapters.Study_viewTableAdapter study_viewTableAdapter;
+        private System.Windows.Forms.Button heldStudyListButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn studyStatusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn scheduledOnDataGridViewTextBoxColumn;

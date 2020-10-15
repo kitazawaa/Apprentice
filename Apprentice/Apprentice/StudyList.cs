@@ -299,7 +299,9 @@ namespace Apprentice
                     WorkItem item = studyListDataGridView.CurrentRow.DataBoundItem as WorkItem;
                     DbManager.HoldStudy(item.OrderNumber);
 
-                    logger.Info("オーダー番号" + item.OrderNumber + "の検査を保留にしました。");
+                    logger.Info("オーダー番号 " + item.OrderNumber + "の検査を保留にしました。");
+
+                    DisplayStudylist();
                 }
 
                 if (validRadioButton.Checked)
@@ -350,8 +352,13 @@ namespace Apprentice
             logger.Info(_user.UserName + "さんがログアウトしました。");
         }
 
+
         #endregion
 
-        
+        private void HeldStudyListButton_Click(object sender, EventArgs e)
+        {
+            HeldStudyList heldstudy = new HeldStudyList();
+            heldstudy.ShowDialog();
+        }
     }
 }

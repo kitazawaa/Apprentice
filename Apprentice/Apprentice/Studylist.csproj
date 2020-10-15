@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HeldStudyList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HeldStudyList.Designer.cs">
+      <DependentUpon>HeldStudyList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StudyList_dbDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Study_dbDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Study_dbDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="UserRegistration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +108,9 @@
     <Compile Include="UserSetting.Designer.cs">
       <DependentUpon>UserSetting.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="HeldStudyList.resx">
+      <DependentUpon>HeldStudyList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,6 +168,17 @@
     </None>
     <None Include="StudyList_dbDataSet.xss">
       <DependentUpon>StudyList_dbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Study_dbDataSet.xsc">
+      <DependentUpon>Study_dbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Study_dbDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Study_dbDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Study_dbDataSet.xss">
+      <DependentUpon>Study_dbDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
